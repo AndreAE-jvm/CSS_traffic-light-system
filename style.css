@@ -1,0 +1,199 @@
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #111;
+    background: radial-gradient(circle, #222 0%, #000 100%);
+}
+
+h1 {
+    margin-bottom: 70px;
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    background: linear-gradient(90deg,
+            #ff0000, #ff6600, #ffcc00,
+            #33cc33, #0099ff, #6633cc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    letter-spacing: 3px;
+    animation: rainbow 6s linear infinite;
+    background-size: 300% 100%;
+}
+
+@keyframes rainbow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+
+.traffic-light {
+    display: flex;
+    justify-content: space-between;
+    background-color: #222;
+    border-radius: 25px;
+    padding: 30px 50px;
+    width: 450px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 30px rgba(0, 150, 255, 0.3);
+    border: 2px solid #444;
+}
+
+
+
+.light {
+    display: flex;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 10px;
+    opacity: 0.3;
+    transition: opacity 0.3s, box-shadow 0.3s;
+}
+
+
+.red {
+    background-color: #ff3333;
+}
+
+.yellow {
+    background-color: #ffff33;
+}
+
+.green {
+    background-color: #33ff33;
+}
+
+
+/*Класс active прописан в нескольких местах кода и 
+используется для управления состоянием сигналов светофора*/
+
+.active {
+    opacity: 1;
+    box-shadow: 0 0 35px 10px currentColor;
+    transform: scale(1.1);
+}
+
+
+
+/* Стили для кнопки NEXT*/
+.nfs-button {
+    position: relative;
+    padding: 20px 50px;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(45deg, #ff3300 0%, #ffcc00 50%, #ff3300 100%);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 40px;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    letter-spacing: 2px;
+}
+
+.nfs-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+    z-index: -1;
+}
+
+.nfs-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(255, 204, 0, 0.8);
+}
+
+.nfs-button:hover::before {
+    left: 100%;
+}
+
+.nfs-button:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 5px 15px rgba(255, 204, 0, 0.6);
+}
+
+/* Анимация для текста кнопки NEXT */
+.nfs-button span {
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.nfs-button:hover span {
+    transform: scale(1.1);
+}
+
+/* Дополнительные элементы стиля */
+/* .nfs-button::after {
+    content: '»';
+    position: absolute;
+    right: 20px;
+    opacity: 0;
+    transition: all 0.3s;
+} */
+
+.nfs-button:hover::after {
+    right: 15px;
+    opacity: 1;
+}
+
+
+
+
+
+.go-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #33ff33;
+    padding: 40px 100px;
+    border-radius: 20px;
+    font-size: 100px;
+    font-weight: bold;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.6s;
+    z-index: 100;
+    box-shadow: 0 0 60px rgba(51, 255, 51, 0.8);
+    border: 4px solid #33ff33;
+    text-shadow: 0 0 30px rgba(51, 255, 51, 0.9);
+    font-family: 'Arial Black', sans-serif;
+}
+
+.go-message.show {
+    opacity: 1;
+    visibility: visible;
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
